@@ -3,8 +3,14 @@
 }
 
 body {
-    background: #10101B;
+    padding: 0 100px;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-repeat: no-repeat;
     height: 100vh;
+    width: 100%;
 }
 
 .container {
@@ -36,7 +42,7 @@ body {
     box-shadow: none;
 }
 
-input[type='text'] {
+input[type='number'] {
     background-color: #3D4153;
     padding: 10px 0px;
     color: #ffffff;
@@ -47,10 +53,16 @@ input[type='text'] {
     padding: 10px;
 }
 
-input[type='text']:focus {
+input[type='number']:focus,
+[type='number']:disabled {
     background-color: #3D4153;
     color: #fff;
     font-size: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 .numbers {
@@ -104,6 +116,7 @@ input[type='text']:focus {
     margin-top: 20px;
     border-radius: 15px;
     padding: 5px 20px;
+    display: none;
 }
 
 .notify-section {
