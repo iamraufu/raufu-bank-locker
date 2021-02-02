@@ -13,6 +13,10 @@ body {
     width: 100%;
 }
 
+#name {
+    color: #5379b8;
+}
+
 .container {
     margin-top: 30px;
 }
