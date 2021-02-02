@@ -18,7 +18,10 @@ buttonContainer.addEventListener('click', function(event) {
     const digit = event.target.innerText;
     if (isNaN(digit)) {
         if (digit == 'C') {
-            document.getElementById('typed-pin').value = '';
+            document.getElementById('typed-pin').value = "";
+        }
+        if (digit == 'B') {
+            document.getElementById('typed-pin').value = document.getElementById('typed-pin').value.slice(0, -1);
         }
     } else {
         const typedInput = document.getElementById('typed-pin');
@@ -26,19 +29,41 @@ buttonContainer.addEventListener('click', function(event) {
     }
 })
 
+let tryCount = 3;
+
 function verifyPin() {
     const pin = document.getElementById('pin').value;
     const typedPin = document.getElementById('typed-pin').value;
-    if (pin == typedPin) {
+    if (pin == typedPin && typedPin != "") {
         displayMatchResult('block', 'none');
+        tryCount--;
+        submitDisplay();
+        actionDisplay();
     } else {
         displayMatchResult('none', 'block');
+        tryCount--;
     }
-    //     confirm("Thanks for Banking With Raufu Prezens");
-    //     location.reload();
+    if (tryCount < 1) {
+        submitDisplay();
+    }
+    remainingDisplay();
 }
 
 function displayMatchResult(positive, negative) {
     document.getElementById('positive').style.display = positive;
     document.getElementById('negative').style.display = negative;
+}
+
+function submitDisplay() {
+    document.getElementById("submit-match").style.display = "none";
+}
+
+function actionDisplay() {
+    document.getElementById('action-left').style.display = 'none';
+    document.getElementById('pin').value = "";
+}
+
+function remainingDisplay() {
+    document.getElementById("try-left").innerText = tryCount;
+    document.getElementById("typed-pin").value = "";
 }
